@@ -1,0 +1,11 @@
+.page-container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.menu {
+    font-size: 1em;
+    margin-top: 2em;
+}
+.menu dl.sub-nav dd a {
+    color: #007ba1;
+}

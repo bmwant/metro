@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="large-12 small-12 columns">
+            <h3>{{ title }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-4 small-4 columns">
+            {{ form }}
+        </div>
+        <div class="large-8 small-8 columns">
+            {{ result }}
+        </div>
+    </div>
+{% endblock %}

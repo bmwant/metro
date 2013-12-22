@@ -1,0 +1,32 @@
+<html>
+<head>
+    {% block linkrel %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='zurb_foundation/css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='zurb_foundation/css/foundation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+    {% endblock %}
+</head>
+<body>
+<div class="page-container">
+        <div class="row">
+            <div class="large-8 small-8 columns">
+                    <h1>
+                        Aggr<small>egate reports for system of access control</small>
+                    </h1>
+            </div>
+            <div class="large-4 small-4 columns menu">
+                    <dl class="sub-nav">
+                        <dd><a href="#">Card</a></dd>
+                        <dd><a href="#">Hall</a></dd>
+                        <dd><a href="#">Reports</a></dd>
+                        <dd><a href="#">Graphics</a></dd>
+                    </dl>
+            </div>
+        </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 .idea/*
 .git/*
 venv/*
+app/data/*
 *.pyc
 *.pyo

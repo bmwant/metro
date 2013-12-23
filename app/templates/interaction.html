@@ -6,10 +6,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="large-4 small-4 columns">
-            {{ form }}
+        <div class="large-3 small-3 columns">
+            <form method="post" action="" id="form">
+                {% for field in form %}
+                    {{ render_field(field) }}
+                {% endfor %}
+                <a href="#" onclick='form.submit()' class="button tiny success wide">Submit</a>
+            </form>
         </div>
-        <div class="large-8 small-8 columns">
+        <div class="large-9 small-9 columns">
             {{ result }}
         </div>
     </div>

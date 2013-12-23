@@ -1,8 +1,9 @@
 __author__ = 'viach_os'
 
-from flask import Flask, render_template
+from flask import Flask, render_template, flash,request
 app = Flask(__name__)
 
 app.config.from_object('config')
 
-from app import views
+import views
+#: TODO: app import system, package

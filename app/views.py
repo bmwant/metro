@@ -1,22 +1,27 @@
 # -*- coding: utf-8 -*-
 __author__ = 'viach_os'
 
-from app import app, render_template
+from app import app, render_template, request
+import forms
 
 
-@app.route("/")
 def index():
-    return render_template('interaction.html', title='Card', form='Form', result='Result')
-
+    pass
 
 @app.route("/card", methods=['GET', 'POST'])
 def card():
-    pass
+    form = forms.CardForm()
+    if form.validate_on_submit():
+        #: TODO: resolve
+        form.process_input()
+    return render_template('interaction.html', title='Card', form=form, result='result')
 
 
+"""
 def output_card():
-    pass
+    return card('POST')
 
-
+@app.route("/card", methods=['GET'])
 def input_card():
-    pass
+    return card('GET')
+"""

@@ -1,0 +1,17 @@
+{% macro render_field_errors(field) %}
+    {% if field.errors %}
+        {{ field(class = "error", **kwargs)|safe }}
+        {% for error in field.errors %}
+            <small class="error">{{error}}</small>
+        {% endfor %}
+    {% else %}
+        {{ field(**kwargs)|safe }}
+    {%  endif %}
+{% endmacro %}
+
+{% macro render_field(field) %}
+    {% if field.widget.input_type != 'hidden' %}
+        {{ field.label }}
+    {% endif %}
+    {{ render_field_errors(field, **kwargs) }}
+{% endmacro %}

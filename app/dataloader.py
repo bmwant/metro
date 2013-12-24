@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'viach_os'
 
-SERVER = 'avms.dit.in.ua'
-USERNAME = 'student'
-PASSWORD = 'student'
 DB_ALIAS = 'db'
 DB_EXT = 'db3'
-
 DATAPATH = 'data'
 
 import ftplib
@@ -56,6 +52,10 @@ class DataLoader(object):
 
         return abspath
 
+    def get_list_of_dir(self, dirpath):
+        return self.connection.nlst(dirpath)
+
+
 def get_available_halls():
     """
     nodes.name + list of ADBK_dump20130225/*
@@ -88,6 +88,8 @@ def move_db(filename):
 
     shutil.move(filename, os.path.join(DATAPATH, db_file))
     shutil.rmtree(filename.split(os.path.sep)[0])
+
+
 
 if __name__ == '__main__':
     loader = DataLoader(SERVER, USERNAME, PASSWORD)

@@ -4,3 +4,4 @@ venv/*
 app/data/*
 *.pyc
 *.pyo
+data/*

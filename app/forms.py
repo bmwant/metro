@@ -40,28 +40,33 @@ class CardForm(Form):
     hall = SelectField('Hall', validators=[Required()],
                        choices=get_halls())
     #: TODO: add number validator
-    card = TextField('Card Number', validators=[Required()])
+    card_number = TextField('Card No', validators=[Required()])
 
     def process_input(self):
         """
-
+        Download file with db from FTP and search in it
         """
         filename = '%s/adbk.%s.rar' % (app.config['DUMP_DIR'], self.hall.data)
         db_path = server.download_file(filename,
                                    ''.join([dataloader.DB_ALIAS, '.rar']))
+        #: TODO: except broken pip - create new server
 
         if db_path:
             unrar_path = dataloader.unrar(db_path, dataloader.DB_EXT)
             dataloader.move_db(unrar_path)
+            # import database #: rebind model
+            # database.bind_models_to_database()
             flash('%s loaded into %s' % (filename, db_path))
         else:
-            flash('File exists')
+            flash('Database file exists')
 
-        #: allocate card for this hall
+        print 'before import models'
+        import models
+        print id(models.Base)
+        result = models.MetroEvent.query.filter_by(cardno=self.card_number.data).all()
+        flash('Found %s records' % len(result))
 
-        #: if card are allocated
-            #: return result
-        pass
+        return result
 
 
 

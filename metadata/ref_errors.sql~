@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS `ref_errors`;
+CREATE TABLE `ref_errors` ( ErrorCode INTEGER, ErrorName VARCHAR(50) );
+BEGIN TRANSACTION;
+DELETE FROM 'ref_errors';
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 0,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 1,'недостатньо ресурсiв' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 2,'невiрний срок дiї' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 3,'стороння картка' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 4,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 5,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 6,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 7,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 8,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 9,'помилка вiдсутня' );
+INSERT INTO ref_errors ( ErrorCode, ErrorName ) VALUES ( 10,'помилка вiдсутня' );
+
+COMMIT;
+.exit

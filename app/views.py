@@ -11,10 +11,10 @@ def index():
 @app.route("/card", methods=['GET', 'POST'])
 def card():
     form = forms.CardForm()
+    result = None
     if form.validate_on_submit():
-        #: TODO: resolve
-        form.process_input()
-    return render_template('interaction.html', title='Card', form=form, result='result')
+        result = form.process_input()
+    return render_template('interaction.html', title='Card', form=form, result=result)
 
 
 """

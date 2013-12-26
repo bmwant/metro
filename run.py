@@ -4,3 +4,4 @@ __author__ = 'viach_os'
 from app import app
 
 app.run(debug=app.config['DEBUG'], port=app.config['SERVER_PORT'])
+        #, extra_files=app.config['DATABASE'])

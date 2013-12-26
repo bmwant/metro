@@ -15,7 +15,26 @@
             </form>
         </div>
         <div class="large-9 small-9 columns">
-            {{ result }}
+        {% if result %}
+            <table class="card-info">
+                <thead>
+                    <tr>
+                    {% for column in result[0].__table__.columns.keys() %}
+                        <th>{{ column }}</th>
+                    {% endfor %}
+                    </tr>
+                    </thead>
+                <tbody>
+                    {% for item in result%}
+                        <tr>
+                        {% for cell in item.to_cells() %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
         </div>
     </div>
 {% endblock %}

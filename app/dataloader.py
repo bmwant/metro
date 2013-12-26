@@ -8,6 +8,7 @@ DATAPATH = 'data'
 import ftplib
 import os
 import StringIO
+import socket, errno
 
 
 class DataLoader(object):
@@ -44,6 +45,9 @@ class DataLoader(object):
         try:
             if lazy and self.connection.size(filename) == os.path.getsize(filepath):
                 return False
+        except socket.error, e:
+            if e.errno == errno.EPIPE:
+                print 'Restart app'
         except OSError:
             pass
 

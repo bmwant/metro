@@ -12,3 +12,10 @@
 .button.wide {
     width: 100%;
 }
+table.card-info thead tr th,
+table.card-info tfoot tr th,
+table.card-info tbody tr td,
+table.card-info tr td,
+table.card-info tfoot tr td {
+    font-size: 0.7em;
+}

@@ -14,6 +14,5 @@ server = dataloader.DataLoader(app.config['SERVER'], app.config['USERNAME'],
 import views
 
 
-
-
+app.jinja_env.globals.update(getattr=getattr)
 #: TODO: app import system, package

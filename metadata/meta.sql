@@ -1,4 +1,4 @@
- 
+
 DROP TABLE IF EXISTS `ref_errors`;
 CREATE TABLE `ref_errors` ( ErrorCode INTEGER, ErrorName VARCHAR(50) );
 DELETE FROM 'ref_errors';
@@ -40,10 +40,12 @@ INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 42, 'Обслугову�
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 43, 'Закінчення обслуговування');
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 45, 'Перевірка бази даних');
 
-
-
-
-
-
-
+DROP TABLE IF EXISTS `cashiers`;
+CREATE TABLE `cashiers` (ID INTEGER,Surname VARCHAR(50),Name VARCHAR(50),Fathername VARCHAR(50),Position VARCHAR(50),CardNo CHAR(20));
+DELETE FROM 'cashiers';
+INSERT INTO cashiers VALUES(4604,'Вороніна','Олена','Андріївна','Прибиральниця','0000 0060 0000 4231');
+INSERT INTO cashiers VALUES(7866,'Воронов','Олександр','Станіславович','Інсп.ЗОК','0000 0006 7000 4668');
+INSERT INTO cashiers VALUES(100144,'Воротинська','Тетяна','Миколаївна','iнж.-технолог','0000 0060 0102 2125');
+INSERT INTO cashiers VALUES(5565,'Воротинська     ','Віра','Григорівна','Зав. складу','0000 0006 5000 4565');
+INSERT INTO cashiers VALUES(100912,'Воскобой','Любов','Петрівна','Маш.приб.машин','0000 0006 0010 2219');
 

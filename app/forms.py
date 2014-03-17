@@ -5,7 +5,13 @@ from flask.ext.wtf import Form
 from wtforms.fields import TextField, SelectField, SubmitField
 from wtforms.validators import Required
 
-from app import app, server, dataloader, flash
+#: TODO: move logic from this
+from sqlalchemy import and_
+from sqlalchemy.sql import func
+
+
+from app import app, server, dataloader, flash, models, database
+
 
 #: TODO: set lazy
 def get_halls():
@@ -60,14 +66,52 @@ class CardForm(Form):
         else:
             flash('Database file exists')
 
-        print 'before import models'
-        import models
-        print id(models.Base)
         result = models.MetroEvent.query.filter_by(cardno=self.card_number.data).all()
         flash('Found %s records' % len(result))
 
         return result
 
+
+class HallForm(Form):
+    hall = SelectField('Hall', validators=[Required()],
+                       choices=get_halls())
+    start_date = TextField('Start', validators=[Required()])
+    end_date = TextField('End', validators=[Required()])
+
+    def process_input(self):
+        filename = '%s/adbk.%s.rar' % (app.config['DUMP_DIR'], self.hall.data)
+        db_path = server.download_file(filename,
+                                       ''.join([dataloader.DB_ALIAS, '.rar']))
+        #: TODO: except broken pip - create new server
+
+        if db_path:
+            unrar_path = dataloader.unrar(db_path, dataloader.DB_EXT)
+            dataloader.move_db(unrar_path)
+            # import database #: rebind model
+            # database.bind_models_to_database()
+            flash('%s loaded into %s' % (filename, db_path))
+        else:
+            flash('Database file exists')
+
+
+        """
+        database.session.query(models.MetroEvent.cardno,
+            label('members', func.count(models.MetroEvent.id)),
+            label('total_balance', func.sum(models.MetroEvent.amount))).group_by(User.group).all()
+        """
+
+        result = models.MetroEvent.query.\
+            filter(and_(models.MetroEvent.datetime >= self.start_date.data,
+                 models.MetroEvent.datetime <= self.end_date.data,
+                 models.MetroEvent.eventcode == 231)).\
+            group_by(models.MetroEvent.cardno).all()
+        flash('Found %s records' % len(result))
+
+        for item in result:
+            item.amount *= -0.01
+
+        amount = map(lambda item: item.amount, result)
+        return result, sum(amount)
 
 
 

@@ -14,14 +14,12 @@ def card():
     result = None
     if form.validate_on_submit():
         result = form.process_input()
-    return render_template('interaction.html', title='Card', form=form, result=result)
+    return render_template('card_table.html', title='Card', form=form, result=result)
 
-
-"""
-def output_card():
-    return card('POST')
-
-@app.route("/card", methods=['GET'])
-def input_card():
-    return card('GET')
-"""
+@app.route("/hall", methods=['GET', 'POST'])
+def hall():
+    form = forms.HallForm()
+    result, summ = None, None
+    if form.validate_on_submit():
+        result, summ = form.process_input()
+    return render_template('hall_table.html', title='Hall', form=form, result=result, summ=summ)

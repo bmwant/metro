@@ -1,0 +1,33 @@
+{% extends "interaction.html" %}
+{% block table_report %}
+    <table class="hall-info">
+        <thead>
+        <tr>
+
+            <th> DateTime </th>
+            <th> Cashier </th>
+            <th> Amount </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in result%}
+            <tr>
+                <td> {{ item.datetime }}</td>
+                <td>
+                    {% if item.cashier %}
+                        {{ item.cashier.fullname }}
+                    {% else %}
+                        {{ item.cardno }}
+                    {% endif %}
+                </td>
+                <td> {{ item.amount }}</td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td></td>
+                <td>SUMM</td>
+                <td><strong>{{ summ }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

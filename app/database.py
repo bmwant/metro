@@ -35,15 +35,15 @@ def extend_engine(engine, sql_file):
 
 def bind_models_to_database():
     engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'],
-                                      connect_args={'check_same_thread': False},
                                       convert_unicode=True)
 
     extend_engine(engine, app.config['SQLALCHEMY_META'])
+    session = sessionmaker(bind=engine)
     db_session = create_session(engine)
     Base = declarative_base()
     Base.query = db_session.query_property()
     Base.metadata.create_all(bind=engine)
-    return Base
+    return Base, session
 
 
-Base = bind_models_to_database()
+Base, session = bind_models_to_database()

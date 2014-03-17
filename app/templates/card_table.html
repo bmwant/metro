@@ -1,0 +1,31 @@
+{% extends "interaction.html" %}
+{% block table_report %}
+    <table class="card-info">
+        <thead>
+        <tr>
+            <th> ID	</th>
+            <th> CardNo </th>
+            <th> DateTime </th>
+            <th> Event </th>
+            <th> Error </th>
+            <th> TransValue </th>
+            <th> Amount </th>
+            <th> PurseValue </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in result%}
+            <tr>
+                <td> {{ item.id }}</td>
+                <td> {{ item.cardno }}</td>
+                <td> {{ item.datetime }}</td>
+                <td> {{ item.event.eventname }}</td>
+                <td> {{ item.error.errorname }}</td>
+                <td> {{ item.transactionvalue }}</td>
+                <td> {{ item.amount }}</td>
+                <td> {{ item.pursevalue }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

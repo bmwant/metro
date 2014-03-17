@@ -16,24 +16,8 @@
         </div>
         <div class="large-9 small-9 columns">
         {% if result %}
-            <table class="card-info">
-                <thead>
-                    <tr>
-                    {% for column in result[0].__table__.columns.keys() %}
-                        <th>{{ column }}</th>
-                    {% endfor %}
-                    </tr>
-                    </thead>
-                <tbody>
-                    {% for item in result%}
-                        <tr>
-                        {% for cell in item.to_cells() %}
-                            <td>{{ cell }}</td>
-                        {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% block table_report %}
+            {% endblock %}
         {% endif %}
         </div>
     </div>

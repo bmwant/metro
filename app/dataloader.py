@@ -8,7 +8,9 @@ DATAPATH = 'data'
 import ftplib
 import os
 import StringIO
-import socket, errno
+import socket
+import errno
+from datetime import datetime
 
 
 class DataLoader(object):
@@ -30,6 +32,13 @@ class DataLoader(object):
         self.connection.retrbinary("RETR %s" % filename, file.write)
         file.seek(0)
         return file.readlines()
+
+    def get_file_modtime(self, filename):
+        modtime = self.connection.sendcmd("MDTM %s" % filename)
+        if modtime[:3] == '213':
+            modtime = modtime[3:].strip()
+        readtime = datetime.strptime(modtime, "%Y%m%d%H%M%S").strftime("%d %B %Y %H:%M:%S")
+        return readtime
 
     def download_file(self, filename, local_name=None, lazy=True):
         """
@@ -74,9 +83,9 @@ def get_card_by_hall(hall, card_number):
 def connect_to_sqlite():
     pass
 
+
 def unrar(rar_path, extension):
     import rarfile
-
     with rarfile.RarFile(rar_path) as rf:
         for file in rf.infolist():
             if file.filename.split('.')[-1] == extension:
@@ -91,7 +100,7 @@ def move_db(filename):
         filename = filename.replace('\\', '/')
 
     shutil.move(filename, os.path.join(DATAPATH, db_file))
-    shutil.rmtree(filename.split(os.path.sep)[0])
+    #shutil.rmtree(filename.split(os.path.sep)[0])
 
 
 

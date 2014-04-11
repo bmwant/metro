@@ -2,32 +2,57 @@
 <html>
 <head>
     {% block linkrel %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='zurb_foundation/css/normalize.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='zurb_foundation/css/foundation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/semantic.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="{{ url_for('static', filename='javascript/semantic.js') }}"></script>
     {% endblock %}
 </head>
 <body>
-<div class="page-container">
-        <div class="row">
-            <div class="large-8 small-8 columns">
-                    <h1>
-                        Aggr<small>egate reports for system of access control</small>
-                    </h1>
-            </div>
-            <div class="large-4 small-4 columns menu">
-                    <dl class="sub-nav">
-                        <dd><a href="{{url_for('card')}}">Card</a></dd>
-                        <dd><a href="{{url_for('hall')}}">Hall</a></dd>
-                        <dd><a href="#">Reports</a></dd>
-                        <dd><a href="#">Graphics</a></dd>
-                    </dl>
-            </div>
+<div class="ui grid">
+    <div class="row">
+        <a href="/" class="ui image">
+              <img src="{{ url_for('static', filename='images/logo.png') }}">
+            </a>
+    </div>
+    <div class="row">
+        <div class="ui two column page grid">
+
+
+                <div class="four wide column">
+
+                    <div class="ui vertical menu">
+                        <a id="card" class="item" href="{{url_for('card')}}">Card</a>
+                        <a id="hall" class="item" href="{{url_for('hall')}}">Hall</a>
+                        <a id="reports" class="item" href="{{url_for('reports')}}">Reports</a>
+                        <a id="charts" class="item" href="{{url_for('charts')}}">Charts</a>
+                    {#
+                    <div class="item">
+                        <div class="ui small icon input">
+                            <input type="text" placeholder="Search mail...">
+                            <i class="search icon"></i>
+                        </div>
+                    </div>#}
+                </div>
+                </div>
+                <div class="ten wide column">
+                    {% include "flash.html" %}
+                    <div class="vertically divided grid">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <script>
+                    $('.ui.selection.dropdown').dropdown();
+                    $('.ui.accordion').accordion();
+                    $('.message .close').on('click', function() {
+                      $(this).closest('.message').fadeOut();
+                    });
+                    $('#{{ link }}').addClass("teal active");
+                </script>
+
         </div>
-    {% include "flash.html" %}
-    <div class="content">
-        {% block content %}
-        {% endblock %}
     </div>
 </div>
 </body>

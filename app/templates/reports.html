@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+    {% block table_existence %}
+    <table class="ui table segment">
+        <thead>
+        <tr>
+            <th> Hall	</th>
+            <th> adbk1 </th>
+            <th> adbk2 </th>
+            <th> adbk3 </th>
+            <th> adbk4 </th>
+            <th> Update </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, value in halls.iteritems() %}
+            <tr>
+                <td> {{ value.name }}</td>
+                {% for adbk in value.adbk %}
+                    {% if adbk[loop.index|string] %}
+                        {% if adbk.status == 'Updated' %}
+                            <td class="positive">{{ adbk[loop.index|string] }}</td>
+                        {% elif adbk.status == 'Outdated' %}
+                            <td class="warning">{{ adbk[loop.index|string] }}</td>
+                        {% else %}
+                            <td class="error">{{ adbk[loop.index|string] }}</td>
+                        {% endif %}
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+                <td><a href="#">Reload</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+        </div>
+
+    <div class="row">
+    {% block table_income %}
+    <table class="ui table segment">
+        <thead>
+        <tr>
+            <th> Hall	</th>
+            <th> adbk </th>
+            <th> day1 </th>
+            <th> day2 </th>
+            <th> day3 </th>
+            <th> SUMM </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in result%}
+            <tr>
+                <td> {{ item.id }}</td>
+                <td> {{ item.cardno }}</td>
+                <td> {{ item.datetime }}</td>
+                <td> {{ item.event.eventname }}</td>
+                <td> {{ item.error.errorname }}</td>
+                <td><a href="#">Reload</a>/td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+            <th> Whle	</th>
+            <th> adbk </th>
+            <th> day1 </th>
+            <th> day2 </th>
+            <th> day3 </th>
+            <th> SUMM </th>
+        </tr>
+        </tfoot>
+    </table>
+    {% endblock %}
+        </div>
+
+    <div class="row">
+    {% include "cashiers_report.html" %}
+    </div>
+{% endblock %}

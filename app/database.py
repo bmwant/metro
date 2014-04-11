@@ -3,10 +3,10 @@
 """
 Configuring ORM
 """
-__author__ = 'NetbookKakoff'
 
 import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm.query import Query
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.engine import Engine
 from sqlalchemy import event
@@ -20,6 +20,8 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     cursor.execute("PRAGMA foreign_keys=ON")
     cursor.close()
 """
+
+
 
 def create_session(engine):
     return scoped_session(sessionmaker(bind=engine))
@@ -36,7 +38,6 @@ def extend_engine(engine, sql_file):
 def bind_models_to_database():
     engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'],
                                       convert_unicode=True)
-
     extend_engine(engine, app.config['SQLALCHEMY_META'])
     session = sessionmaker(bind=engine)
     db_session = create_session(engine)

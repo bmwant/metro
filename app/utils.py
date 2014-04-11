@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = 'viach_os'
 
 def chunks(s, n):
     """Produce `n`-character chunks from `s`."""

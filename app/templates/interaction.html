@@ -6,19 +6,40 @@
         </div>
     </div>
     <div class="row">
-        <div class="large-3 small-3 columns">
+        <div class="ui form segment">
             <form method="post" action="" id="form">
                 {% for field in form %}
-                    {{ render_field(field) }}
+                    {% if field.type == "SelectField" %}
+                        <div class="field">
+                            {{ field.label }}
+                            <div class="ui selection dropdown fluid">
+                                <div class="text">Select</div>
+                                <i class="dropdown icon"></i>
+                                <input type="hidden" name="{{ field.name }}">
+
+                                <div class="menu">
+                                    {% for subfield in field %}
+                                        <div class="item"
+                                             data-value="{{ subfield.data }}">{{ subfield.label }}</div>
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="field">
+                            {{ render_field(field) }}
+                        </div>
+                    {% endif %}
                 {% endfor %}
-                <a href="#" onclick='form.submit()' class="button tiny success wide">Submit</a>
+                <a onclick='form.submit(); return false;' class="ui blue submit button">Submit</a>
             </form>
         </div>
-        <div class="large-9 small-9 columns">
+    </div>
+    <div class="row">
         {% if result %}
             {% block table_report %}
             {% endblock %}
         {% endif %}
-        </div>
     </div>
 {% endblock %}

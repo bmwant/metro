@@ -1,0 +1,28 @@
+<div class="ui accordion">
+    {% for station in stations %}
+    <div class="title">
+        <i class="dropdown icon"></i>
+        {{ station }}
+    </div>
+    <div class="content">
+        <table class="ui table segment">
+            <thead>
+            <tr>
+                <th>Hall</th>
+                <th>Cashier</th>
+                <th>DateTime</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in result %}
+                <tr>
+                    <td>one</td>
+                    <td>two</td>
+                    <td>three</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+</div>

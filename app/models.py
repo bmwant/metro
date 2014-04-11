@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Models for Aggr
+Models
 SQLAlchemy declarative is used.
 """
-__author__ = 'NetbookKakoff'
-
 
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship

@@ -1,16 +1,12 @@
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <div class="row">
-            <div class="large-7 large-centered columns">
-                <div data-alert class="alert-box secondary">
-                    {% for message in messages %}
-                        <div class="alert alert-info">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                    <a href="#" class="close">&times;</a>
-                </div>
-            </div>
+    <div class="row">
+        {% for message in messages %}
+        <div class="ui info message">
+            <i class="close icon"></i>
+            {{ message }}
         </div>
+        {% endfor %}
+    </div>
     {% endif %}
 {% endwith %}

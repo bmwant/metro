@@ -7,7 +7,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 CSRF_ENABLED = True
 DEBUG = True
 SERVER_PORT = 5000
-SECRET_KEY = 'aGGr'
+SECRET_KEY = 'some-secret-key'
 
 SERVER = 'avms.dit.in.ua'
 USERNAME = 'student'

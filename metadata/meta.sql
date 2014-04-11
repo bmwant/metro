@@ -25,12 +25,12 @@ INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 2, 'Вхід до тех
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 3, 'Завершення роботи' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 4, 'Вхід до меню інкасування' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 5, 'Перегляд історії' );
-INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 6, 'Відкриття пристрою (спрацював датчик )' );
-INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 7, 'Закриття пристрою (спрацював датчик )' );
+INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 6, 'Відкриття пристрою (спрацював датчик)' );
+INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 7, 'Закриття пристрою (спрацював датчик)' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 8, 'Вилучення бункеру' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 9, 'Встановлення бункеру' );
-INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 15, 'Додана купюра)' );
-INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 17, 'Запуск ПЗ(№ версії' );
+INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 15, 'Додана купюра' );
+INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 17, 'Запуск ПЗ № версії' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 18, 'Встановлена картка' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 19, 'Завершення роботи з карткою' );
 INSERT INTO ref_events ( EventCode,EventName ) VALUES ( 28, 'Купюру повернуто' );

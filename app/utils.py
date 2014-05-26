@@ -44,4 +44,4 @@ def improve_dump(fname):
 
 
 if __name__ == '__main__':
-    improve_dump('/home/natalia/viach/py_workspace/aggr/metadata/guest')
+    pass

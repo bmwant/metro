@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = 'viach_os'
-
 DB_ALIAS = 'db'
 DB_EXT = 'db3'
 DATAPATH = 'data'

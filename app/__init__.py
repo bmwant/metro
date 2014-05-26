@@ -1,5 +1,3 @@
-__author__ = 'viach_os'
-
 from flask import Flask, render_template, flash, request, g, redirect
 
 

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = 'viach_os'
 
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))

@@ -43,6 +43,8 @@ class DataLoader(object):
     def download_file(self, filename, local_name=None, lazy=True):
         """
         Return full file name
+        Dowload file [filename] from remote server to file [local_name]
+        of local machine
         """
         local_name = local_name or filename
 
@@ -93,13 +95,19 @@ def unrar(rar_path, extension):
                 return file.filename
 
 
-def move_db(filename):
+def move_db(filename, where=None):
+    """
+    When archive is unpacked you want to move it to different place [where]
+    """
     import shutil
     db_file = '.'.join([DB_ALIAS, DB_EXT])
     if '\\' in filename:
         filename = filename.replace('\\', '/')
 
-    shutil.move(filename, os.path.join(DATAPATH, db_file))
+    if where:
+        shutil.move(filename, where)
+    else:
+        shutil.move(filename, os.path.join(DATAPATH, db_file))
     #shutil.rmtree(filename.split(os.path.sep)[0])
 
 

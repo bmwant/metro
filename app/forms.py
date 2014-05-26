@@ -79,9 +79,12 @@ def get_adbk_for_hall(hall):
             result.append(item)
     return result
 
+
 def get_cashiers_statistic():
     halls = get_unique_halls()
     for code, name in halls.iteritems():
+        pass
+
 
 def get_halls_statistic():
     """

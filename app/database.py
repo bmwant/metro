@@ -47,4 +47,13 @@ def bind_models_to_database():
     return Base, session
 
 
+def only_bind_database():
+    engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'],
+                                      convert_unicode=True)
+    db_session = create_session(engine)
+    Base = declarative_base()
+    Base.query = db_session.query_property()
+    Base.metadata.create_all(bind=engine)
+    return db_session
+
 Base, session = bind_models_to_database()
